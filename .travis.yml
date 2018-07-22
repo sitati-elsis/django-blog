@@ -9,4 +9,4 @@ services:
 before_script:
   - psql -c 'create database djangoblog;' -U postgres
 script:
-  -./manage test.py
+  - python manage test.py
