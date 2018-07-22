@@ -1,0 +1,16 @@
+# Environments
+env/
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# Visual Studio stuff:
+.vscode
+
+# Compiled code
+*.pyc
+
+**/migrations/**
+**/migrations/__init__.py
