@@ -12,4 +12,4 @@ class Post(models.Model):
     
 
     def get_absolute_url(self):
-        return f"/blog/posts/{self.id}/"
+        return f"/posts/{self.id}"

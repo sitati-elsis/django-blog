@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-
+{% include "log_out.html" %}
 <div class='col-sm-6 col-sm-offset-3'>
-    <h1>{{ title }}</h1>
+
+    <a class="btn btn-primary" href="{% url 'posts_create' %}" role="button">Create Post</a>
+   
     <form method="GET" action="">
         <input type="text" name="q" placeholder="Search posts" value="{{request.GET.q }}"/>
         <input type="submit" value="Search">
@@ -14,7 +16,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="thumbnail">
-                <p>{{ post.title }}</p>
+                <h3><a href='{% url "posts_details" post.id %}'>{{ post.title }}</a></h3>
                 <p>{{ post.content }}</p>
                 <p>{{ post.updated }}</p>
             </div>
