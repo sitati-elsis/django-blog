@@ -83,3 +83,13 @@ def list_post(request):
         "posts": queryset
     }
     return render(request, "posts_list.html", context)
+
+
+@login_required
+def post_detail(request, pk=None):
+    post = get_object_or_404(Post, pk=pk)
+    context = {
+        "post": post
+    }
+    return render(request, "post_detail.html", context)
+
