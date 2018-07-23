@@ -61,7 +61,7 @@ class BlogTestCase(TestCase):
         response = self.client.post(url, edits)
 
         self.assertEqual(response.status_code, 302)
-        self.assertIn('/', response.url)
+        self.assertTrue(response.url.startswith('/'))
 
 
     def test_delete_post(self):
