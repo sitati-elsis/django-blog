@@ -63,4 +63,11 @@ class BlogTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response.url.startswith('/blog/posts'))
 
+
+    def test_delete_post(self):
+        url = reverse('posts_delete', kwargs={'pk': self.post1.id })
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+
     
