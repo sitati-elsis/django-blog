@@ -19,6 +19,7 @@ from blog import views
 
 urlpatterns = [
     url('posts/create', views.create_post, name="posts_create"),
+    url(r'^posts/edit/(?P<pk>\d+)$', views.update_post, name="posts_edit"),
     url(r'^posts/(?P<pk>\d+)$', views.post_detail, name="posts_details"),
     url('posts', views.list_post, name="posts_list"),
 ]

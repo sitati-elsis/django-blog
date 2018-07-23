@@ -93,3 +93,21 @@ def post_detail(request, pk=None):
     }
     return render(request, "post_detail.html", context)
 
+
+@login_required
+def update_post(request, pk=None):
+    post = get_object_or_404(Post, pk=pk)
+
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.save()
+        messages.success(request, "Successfully Edited")
+        return redirect('posts_list')
+    else:
+        messages.error(request, "Error in Editing Post")
+        context = {
+            "form": form,
+        }
+    return render(request, "post_update.html", context)
+
