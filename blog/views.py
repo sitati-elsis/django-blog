@@ -111,3 +111,12 @@ def update_post(request, pk=None):
         }
     return render(request, "post_update.html", context)
 
+
+@login_required
+def delete_post(request, pk=None):
+    
+    post = get_object_or_404(Post, pk=pk)
+    post.delete()
+    messages.success(request, "Successfully deleted")
+    return redirect('posts_list')
+
