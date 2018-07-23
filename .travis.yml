@@ -8,6 +8,6 @@ services:
 before_script:
   - psql -c 'create database djangoblog;' -U postgres
 script:
-  - python manage.py makemigrations
+  - python manage.py makemigrations blog
   - python manage.py migrate
   - python manage.py test
