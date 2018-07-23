@@ -29,3 +29,22 @@ def sign_in(request):
         else:  
             messages.error(request, 'Incorrect username/password.')
             return render(request, 'sign_in.html', context=context)
+
+
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            messages.success(request, "Successfully Created")
+            # return HttpResponseRedirect(post.get_absolute_url())
+            return redirect('posts_list')
+
+    if request.method == "GET":
+        context = {
+            "form": PostForm()
+        }
+        return render(request, "post_form.html", context)
