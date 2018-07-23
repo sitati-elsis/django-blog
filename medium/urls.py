@@ -20,8 +20,8 @@ from django.contrib import admin
 from blog.views import sign_in, logout_view
 
 urlpatterns = [
+    url(r'^', include('blog.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^blog/', include('blog.urls')),
     url(r'^logout$', logout_view, name='logout_view'),
-    url(r'^$', sign_in, name='sign_in'),
+    url(r'^signin$', sign_in, name='sign_in'),
 ]
