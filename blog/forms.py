@@ -11,3 +11,12 @@ class UserForm(forms.ModelForm):
             "username",
             "password",
         ]
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            "title",
+            "content"
+        ]
