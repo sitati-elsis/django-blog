@@ -28,3 +28,15 @@ class BlogTestCase(TestCase):
     def tearDown(self):
         del self.client
 
+
+    def test_create_post(self):
+        data = {
+            'title': 'GoT',
+            'content': 'best show ever'
+        }
+        url = reverse('posts_create')
+        self.client.post(url, data)
+
+
+        posts = Post.objects.all()
+        self.assertTrue(posts)
