@@ -22,5 +22,5 @@ from blog.views import sign_in
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls')),
-
+    url(r'^$', sign_in, name='sign_in'),
 ]

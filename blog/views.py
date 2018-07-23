@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
@@ -48,3 +48,33 @@ def create_post(request):
             "form": PostForm()
         }
         return render(request, "post_form.html", context)
+
+
+@login_required
+def list_post(request):
+    posts = Post.objects.filter(author=request.user)
+    
+    query = request.GET.get("q")
+    if query:
+        posts = posts.filter(
+            Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(author__username__icontains=query) 
+            ).distinct()
+    paginator = Paginator(posts, 5)
+    
+    page = request.GET.get('page') or 1
+    
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        queryset = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        queryset = paginator.page(paginator.num_pages)
+
+    context = {
+        "posts": queryset
+    }
+    return render(request, "posts_list.html", context)

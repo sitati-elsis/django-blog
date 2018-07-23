@@ -19,4 +19,5 @@ from blog import views
 
 urlpatterns = [
     url('posts/create', views.create_post, name="posts_create"),
+    url('posts', views.list_post, name="posts_list"),
 ]
