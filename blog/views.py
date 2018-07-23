@@ -32,6 +32,11 @@ def sign_in(request):
 
 
 @login_required
+def logout_view(request):
+    logout(request)
+    return redirect('sign_in')
+
+@login_required
 def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
