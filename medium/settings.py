@@ -73,7 +73,7 @@ DATABASES = {
     'default': dj_database_url.config()
 }
 
-LOGIN_URL='/'
+LOGIN_URL='/signin'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

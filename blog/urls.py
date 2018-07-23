@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^posts/delete/(?P<pk>\d+)$', views.delete_post, name="posts_delete"),
     url(r'^posts/edit/(?P<pk>\d+)$', views.update_post, name="posts_edit"),
     url(r'^posts/(?P<pk>\d+)$', views.post_detail, name="posts_details"),
-    url('posts', views.list_post, name="posts_list"),
+    url(r'^$', views.list_post, name="posts_list"),
 ]
