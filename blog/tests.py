@@ -40,3 +40,12 @@ class BlogTestCase(TestCase):
 
         posts = Post.objects.all()
         self.assertTrue(posts)
+
+    def test_list_posts(self):
+        url = reverse('posts_list')
+        response = self.client.get(url)
+
+        self.assertInHTML('<p>Some content for post 1</p>', str(response.content), count=1)
+        self.assertInHTML('<p>Some content for post 2</p>', str(response.content), count=1)
+
+    
