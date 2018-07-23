@@ -47,5 +47,20 @@ class BlogTestCase(TestCase):
 
         self.assertInHTML('<p>Some content for post 1</p>', str(response.content), count=1)
         self.assertInHTML('<p>Some content for post 2</p>', str(response.content), count=1)
+    
+
+    def test_update_post(self):
+        url = reverse('posts_edit', kwargs={'pk': self.post1.id })
+        response = self.client.get(url)
+        self.assertContains(response, 'Some content for post 1', count=1)
+
+        edits = {
+            'title': 'New title for post 1',
+            'content': 'New content for post 1'
+        }
+        response = self.client.post(url, edits)
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith('/blog/posts'))
 
     
