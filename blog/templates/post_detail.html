@@ -6,6 +6,9 @@
 {% block content %} 
 
 {% include "log_out.html" %}
+<a href="{% url 'posts_list' %}"  >
+    <span > <h6> Go back </h6></span>
+</a>
 <div class="col-sm-6 col-sm-offset-3">
 <h1>{{ post.title }} </h1>
 <p>Author: {{ post.author }}</p>
